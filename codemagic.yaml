@@ -1,0 +1,24 @@
+workflows:
+  maui:
+    name: Dotnet MAUI
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: io.codemagic.maui.weather
+    scripts:
+      - name: Install dotnet sdk
+        script: |
+          ./dotnet-install.sh
+      - name: Install MAUI
+        script: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
+      - name: Build
+        script: |
+          cd WeatherTwentyOne/src
+          dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+    artifacts:
+        - ./artifacts/*.ipa
