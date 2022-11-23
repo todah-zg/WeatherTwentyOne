@@ -69,7 +69,7 @@ workflows:
             -p:AndroidSigningKeyAlias=$CM_KEY_ALIAS \
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
             -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
-            -p:ApplicationVersion=$UPDATED_BUILD_NUMBER
+            -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -o ../artifacts
     artifacts:
         - ./artifacts/*.aab
