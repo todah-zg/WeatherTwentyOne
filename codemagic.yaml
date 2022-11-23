@@ -57,7 +57,7 @@ workflows:
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
             -p:AndroidSigningKeyAlias=$CM_KEY_ALIAS \
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
-            -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \            
+            -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
             -o ../artifacts
     artifacts:
         - ./artifacts/*.aab
