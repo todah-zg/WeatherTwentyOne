@@ -25,7 +25,7 @@ workflows:
           $DOTNET_BIN workload install ios maccatalyst macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
       - name: Build
         script: |
-          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID") || true
           if [ -z LATEST_BUILD_NUMBER ]; then
               UPDATED_BUILD_NUMBER=$BUILD_NUMBER
           else
