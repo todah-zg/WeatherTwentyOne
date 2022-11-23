@@ -33,6 +33,7 @@ workflows:
             -c Release \
             -p:BuildIpa=True \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
+            -p:RuntimeIdentifier=ios-arm64 \
             -o ../artifacts
     artifacts:
         - ./artifacts/*Signed.ipa
