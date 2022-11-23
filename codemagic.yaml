@@ -10,6 +10,7 @@ workflows:
       vars:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
         DOTNET_BIN:  $CM_BUILD_DIR/dotnet/dotnet
+        APP_ID: 6444530615
     scripts:
       - name: Install dotnet sdk
         script: |
