@@ -9,7 +9,7 @@
     <UseMaui>true</UseMaui>
     <RootNamespace>WeatherTwentyOne</RootNamespace>
     <ApplicationTitle>WeatherTwentyOne</ApplicationTitle>
-    <ApplicationId>com.companyname.WeatherTwentyOne</ApplicationId>
+    <ApplicationId>io.codemagic.maui.weather</ApplicationId>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <SingleProject>true</SingleProject>
     <ApplicationVersion>1</ApplicationVersion>
