@@ -14,7 +14,7 @@ workflows:
       - name: Install dotnet sdk
         script: |
           chmod +x dotnet-install.sh
-          ./dotnet-install.sh
+          ./dotnet-install.sh --install-dir $DOTNET_PATH
       - name: Install MAUI
         script: |
           $DOTNET_BIN nuget locals all --clear 
