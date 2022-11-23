@@ -3,6 +3,8 @@ workflows:
     name: Dotnet MAUI iOS
     max_build_duration: 120
     instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: marijan-codemagic
     environment:
       ios_signing:
         distribution_type: app_store
@@ -19,7 +21,7 @@ workflows:
       - name: Install MAUI
         script: |
           $DOTNET_BIN nuget locals all --clear 
-          $DOTNET_BIN workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          # $DOTNET_BIN workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           $DOTNET_BIN workload install ios maccatalyst macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
       - name: Build
         script: |
@@ -60,7 +62,7 @@ workflows:
       - name: Install MAUI
         script: |
           $DOTNET_BIN nuget locals all --clear 
-          $DOTNET_BIN workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          # $DOTNET_BIN workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           $DOTNET_BIN workload install android maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
       - name: Build
         script: |
