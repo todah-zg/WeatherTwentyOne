@@ -38,6 +38,9 @@ workflows:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
         DOTNET_BIN: $CM_BUILD_DIR/dotnet/dotnet
         PACKAGE_NAME: "io.codemagic.maui.weather"
+    cache:
+      cache_paths:
+        - $CM_BUILD_DIR/dotnet
     scripts:
       - name: Install dotnet sdk
         script: |
