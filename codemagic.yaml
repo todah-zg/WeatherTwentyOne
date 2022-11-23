@@ -72,7 +72,7 @@ workflows:
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -o ../artifacts
     artifacts:
-        - ./artifacts/*.aab
+        - ./artifacts/*Signed-artifacts.aab
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
