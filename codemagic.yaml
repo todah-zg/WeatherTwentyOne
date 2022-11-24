@@ -6,9 +6,6 @@ workflows:
     integrations:
       app_store_connect: marijan-codemagic
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: io.codemagic.maui.weather
       groups:
         - ios-code-signing
       vars:
