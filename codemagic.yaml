@@ -41,7 +41,7 @@ workflows:
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
           echo "LATEST BUILD NUMBER= $LATEST_BUILD_NUMBER"
-          if [ -z LATEST_BUILD_NUMBER ]; then
+          if [ -z $LATEST_BUILD_NUMBER ]; then
              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
           else
              UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
