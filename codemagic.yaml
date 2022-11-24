@@ -35,10 +35,10 @@ workflows:
             PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
             echo ${CM_PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
             echo "Saved provisioning profile $PROFILE_PATH"
-       - name: Set up signing certificate
-         script: | 
-            echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
-                keychain add-certificates --certificate /tmp/certificate.p12
+      - name: Set up signing certificate
+        script: | 
+           echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+           keychain add-certificates --certificate /tmp/certificate.p12
       - name: Build
         script: |
           # LATEST_BUILD_NUMBER=$(! app-store-connect get-latest-app-store-build-number "$APP_ID")
