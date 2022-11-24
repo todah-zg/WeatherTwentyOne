@@ -56,7 +56,11 @@ workflows:
             -o ../artifacts
     artifacts:
         - ./artifacts/*.ipa
-       
+    publishing:
+      app_store_connect:
+        auth: integration
+    
+    
   maui-android:
     name: Dotnet MAUI Android
     max_build_duration: 120
