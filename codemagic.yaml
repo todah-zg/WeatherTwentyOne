@@ -13,6 +13,7 @@ workflows:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
         DOTNET_BIN:  $CM_BUILD_DIR/dotnet/dotnet
         APP_ID: 6444530615
+        BUNDLE_ID: "io.codemagic.maui.weather"
     scripts:
       - name: Install dotnet sdk
         script: |
@@ -25,6 +26,9 @@ workflows:
           $DOTNET_BIN workload install ios maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
       - name: Set up keychain
         script: keychain initialize
+      - name: Fetch signing files
+        script: | 
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE
       - name: Set up signing certificate
         script: keychain add-certificates
       - name: Build
