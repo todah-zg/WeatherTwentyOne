@@ -55,7 +55,7 @@ workflows:
             -p:CodesignProvision=maui-profile-distribution \
             -o ../artifacts
     artifacts:
-        - ./artifacts/*Signed.ipa
+        - ./artifacts/*.ipa
        
   maui-android:
     name: Dotnet MAUI Android
