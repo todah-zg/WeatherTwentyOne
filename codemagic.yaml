@@ -9,6 +9,8 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.maui.weather
+      groups:
+        - ios-code-signing
       vars:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
         DOTNET_BIN:  $CM_BUILD_DIR/dotnet/dotnet
