@@ -40,6 +40,7 @@ workflows:
       - name: Build
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
+          echo $LATEST_BUILD_NUMBER
           if [ -z LATEST_BUILD_NUMBER ]; then
              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
           else
@@ -50,6 +51,7 @@ workflows:
           $DOTNET_BIN publish -f net6.0-ios \
             -c Release \
             -p:BuildIpa=True \
+            -p:ApplicationDisplayVersion="1.0.0" \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:RuntimeIdentifier=ios-arm64 \
             -p:CodesignKey="iPhone Distribution: NEVERCODE LTD (X8NNQ9CYL2)" \
