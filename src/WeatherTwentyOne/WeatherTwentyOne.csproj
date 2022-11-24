@@ -12,7 +12,7 @@
     <ApplicationId>io.codemagic.maui.weather</ApplicationId>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <SingleProject>true</SingleProject>
-    <ApplicationVersion>1</ApplicationVersion>
+    <!-- <ApplicationVersion>1</ApplicationVersion> -->
 
 	<!-- (Optional) Pin to a specific version -->
 	<!--<MauiVersion>6.0.101-preview.11.2349</MauiVersion>-->
