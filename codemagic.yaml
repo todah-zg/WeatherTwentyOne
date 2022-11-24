@@ -38,13 +38,13 @@ workflows:
            keychain add-certificates --certificate /tmp/certificate.p12
       - name: Build
         script: |
-          # LATEST_BUILD_NUMBER=$(! app-store-connect get-latest-app-store-build-number "$APP_ID")
-          # if [ -z LATEST_BUILD_NUMBER ]; then
-          #    UPDATED_BUILD_NUMBER=$BUILD_NUMBER
-          # else
-          #    UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
-          # fi
-          UPDATED_BUILD_NUMBER=1
+          LATEST_BUILD_NUMBER=$(! app-store-connect get-latest-app-store-build-number "$APP_ID")
+          if [ -z LATEST_BUILD_NUMBER ]; then
+             UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+          else
+             UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
+          fi
+          
           cd src
           $DOTNET_BIN publish -f net6.0-ios \
             -c Release \
