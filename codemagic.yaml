@@ -51,6 +51,8 @@ workflows:
             -p:BuildIpa=True \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:RuntimeIdentifier=ios-arm64 \
+            -p:CodesignKey="iPhone Distribution: NEVERCODE LTD (X8NNQ9CYL2)" \
+            -p:CodesignProvision=maui-profile-distribution \
             -o ../artifacts
     artifacts:
         - ./artifacts/*Signed.ipa
