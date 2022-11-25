@@ -23,7 +23,12 @@ workflows:
         script: |
           $DOTNET_BIN nuget locals all --clear 
           $DOTNET_BIN workload install ios maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
-      - name: Build
+      - name: Set Info.plist values
+        script: | 
+          PLIST=$CM_BUILD_DIR/src/WeatherTwentyOne/Platforms/iOS/Info.plist
+          PLIST_BUDDY=/usr/libexec/PlistBuddy
+          $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
+      - name: Set build version and build the app
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
           echo "LATEST BUILD NUMBER= $LATEST_BUILD_NUMBER"
