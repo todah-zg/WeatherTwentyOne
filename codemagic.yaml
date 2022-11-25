@@ -24,22 +24,9 @@ workflows:
           $DOTNET_BIN nuget locals all --clear 
           # $DOTNET_BIN workload install maui maccatalyst macos wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           $DOTNET_BIN workload install ios maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
-      # - name: Set up keychain
-      #  script: keychain initialize
-      # - name: Set up provisioning profiles from environment variables
-      #  script: | 
-      #      PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
-      #      mkdir -p "$PROFILES_HOME"
-      #      PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
-      #      echo ${CM_PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
-      #      echo "Saved provisioning profile $PROFILE_PATH"
-      # - name: Set up signing certificate
-      #  script: | 
-      #     echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
-      #     keychain add-certificates --certificate /tmp/certificate.p12
       - name: Build
         script: |
-          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
           echo "LATEST BUILD NUMBER= $LATEST_BUILD_NUMBER"
           if [ -z $LATEST_BUILD_NUMBER ]; then
              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
