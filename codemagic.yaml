@@ -31,7 +31,6 @@ workflows:
       - name: Set build version and build the app
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
-          echo "LATEST BUILD NUMBER= $LATEST_BUILD_NUMBER"
           if [ -z $LATEST_BUILD_NUMBER ]; then
              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
           else
