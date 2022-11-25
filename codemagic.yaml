@@ -97,6 +97,7 @@ workflows:
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
             -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
+            -p:ApplicationDisplayVersion="1.0.0" \
             -o ../artifacts
     artifacts:
         - /Users/builder/clone/artifacts/*Signed.aab
