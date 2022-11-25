@@ -22,7 +22,6 @@ workflows:
       - name: Install MAUI
         script: |
           $DOTNET_BIN nuget locals all --clear 
-          # $DOTNET_BIN workload install maui maccatalyst macos wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           $DOTNET_BIN workload install ios maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json      
       - name: Build
         script: |
@@ -34,6 +33,9 @@ workflows:
              UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
           fi
           
+          CERT_NAME=$(keychain list-certificates | jq -r '.[] | .common_name')
+          PROFILE_NAME=$(find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -execdir sh -c '/usr/libexec/PlistBuddy -c "print :Name" /dev/stdin <<< $(security cms -D -i {})' \;)
+          
           cd src
           $DOTNET_BIN publish -f net6.0-ios \
             -c Release \
@@ -41,8 +43,8 @@ workflows:
             -p:ApplicationDisplayVersion="1.0.0" \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:RuntimeIdentifier=ios-arm64 \
-            -p:CodesignKey="iPhone Distribution: NEVERCODE LTD (X8NNQ9CYL2)" \
-            -p:CodesignProvision=maui-profile-distribution \
+            -p:CodesignKey=$CERT_NAME \
+            -p:CodesignProvision=$PROFILE_NAME \
             -o ../artifacts
     artifacts:
         - ./artifacts/*.ipa
