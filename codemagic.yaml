@@ -15,6 +15,11 @@ workflows:
         APP_ID: 6444530615
         BUNDLE_ID: "io.codemagic.maui.weather"
     scripts:
+      - name: Test me
+        script:
+          echo "HERE WE GO!"
+        when:
+          condition: $CM_BRANCH == "main"
       - name: Install dotnet sdk
         script: |
           chmod +x dotnet-install.sh
