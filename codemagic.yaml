@@ -19,7 +19,7 @@ workflows:
         script:
           echo "HERE WE GO!"
         when:
-          condition: $CM_BRANCH == "main"
+          condition: env.CM_BRANCH == "main"
       - name: Install dotnet sdk
         script: |
           chmod +x dotnet-install.sh
